@@ -1,0 +1,4 @@
+venv
+.idea
+test_open_cv_image
+build
