@@ -1,6 +1,7 @@
 
 from distutils.core import setup, Extension
 
+# // test in master
 
 setup(name='test_dll',
       ext_modules=[
