@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 
 
 def test_opencv_1():
-    img_path = "C://Users//admin//Pictures//sdkServerApi_Permission_deni.PNG"
+    img_path = "D:/project/py_test/test_open_cv_image/rose_1.jpg"
 
     # 彩色图像 cv2.IMREAD_COLOR
     # img = cv2.imread(img_path, cv2.IMREAD_COLOR)
@@ -37,7 +37,7 @@ def test_opencv_1():
 
 
 def test_2():
-    img_path = "C://Users//admin//Pictures//sdkServerApi_Permission_deni.PNG"
+    img_path = "D:/project/py_test/test_open_cv_image/rose_1.jpg"
     img = cv2.imread(img_path, 0)
     cv2.imshow('image', img)
     # k = cv2.waitKey(0)
@@ -49,12 +49,12 @@ def test_2():
         cv2.destroyAllWindows()
     # wait for 's' key to save and exit
     elif k == ord('s'):
-        cv2.imwrite('C://Users//admin//Pictures//messigray.png', img)
+        cv2.imwrite('D:/project/py_test/test_open_cv_image/save_rose_1.jpg', img)
         cv2.destroyAllWindows()
 
 
 def test_3():
-    img_path = "C://Users//admin//Pictures//sdkServerApi_Permission_deni.PNG"
+    img_path = "D:/project/py_test/test_open_cv_image/rose_1.jpg"
     img = cv2.imread(img_path, 0)
     plt.imshow(img, cmap='gray', interpolation='bicubic')
     plt.xticks([]), plt.yticks([])
@@ -66,7 +66,7 @@ def test_4():
     使用 matplotlib 正确显示彩色图片  BGR -> RGB
     """
 
-    img_path = "C://Users//admin//Pictures//sdkServerApi_Permission_deni.PNG"
+    img_path = "D:/project/py_test/test_open_cv_image/rose_1.jpg"
     img = cv2.imread(img_path, 1)
     # print(img)
     # b, g, r = cv2.split(img)
@@ -85,10 +85,15 @@ def test_4():
 
 
 def test_video():
-    path = "rtsp://admin:1234qwer@192.168.16.202/h264/ch1/main"
-    video_path = 0
+    # path = "rtsp://admin:1234qwer@192.168.16.202/h264/ch1/main"
+    # path = 0
+    path = "output.avi"
 
     cap = cv2.VideoCapture(path)
+    print("cap.isOpened() = ", cap.isOpened())
+    if not cap.isOpened():
+        """检查摄像头是否成功初始化"""
+        cap.open()
 
     for i in range(18):
         print("cap.get({}) = {}".format(i, cap.get(i)))
@@ -122,14 +127,17 @@ def test_video():
 def test_5():
     path = "rtsp://admin:1234qwer@192.168.16.202/h264/ch1/main"
     cap = cv2.VideoCapture(path)
+
+    print(cap.get(3), cap.get(4))
+
     # Define the codec and create VideoWriter object
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
+    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (1920, 1080), True)
 
-    while(cap.isOpened()):
+    while cap.isOpened():
         ret, frame = cap.read()
 
-        if ret==True:
+        if ret:
             # > 0 : L/R turn    0:Top/down turn    <0:L/R and Top/down turn
             frame = cv2.flip(frame, -1)
             # write the flipped frame
@@ -152,14 +160,14 @@ def test_draw():
     cv2.line(img, (0, 0), (511, 511), (255, 0, 0), 5)
     cv2.rectangle(img, (384, 0), (510, 128), (0, 255, 0), 3)
     cv2.circle(img, (447, 63), 63, (0, 0, 255), -1, cv2.LINE_AA)
-    cv2.ellipse(img, (256, 256), (100, 50), 180, 0, 180, (125, 125, 125), -1, cv2.LINE_AA)
+    cv2.ellipse(img, (256, 256), (100, 50), 0, 0, 180, (125, 125, 125), -1, cv2.LINE_AA)
 
     pts = np.array([[10, 5], [20, 30], [70, 20], [50, 10]], np.int32)
     pts = pts.reshape((-1, 1, 2))
     cv2.polylines(img, [pts], True, (0, 0, 255), 3, lineType=cv2.LINE_AA)
 
     font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(img, 'OpenCV', (10, 500), font, 4, (255, 255, 255), 2, lineType=cv2.LINE_AA)
+    cv2.putText(img, 'OpenCV', (10, 450), font, 4, (255, 255, 255), 2, lineType=cv2.LINE_AA, bottomLeftOrigin=False)
 
     winname = "test_draw"
     cv2.namedWindow(winname, cv2.WINDOW_NORMAL)
@@ -265,26 +273,31 @@ def test_6():
     bgr_100_100 = img[100, 100]
     b_100_100 = img[100, 100, 0]
     # print(img, type(img))
-    print(bgr_100_100)
-    print(b_100_100)
+    print(bgr_100_100)     # (100, 100)像素点的bgr值
+    print(b_100_100)       # (100, 100)像素点的blue值
+
+    # 修改像素点的值
+    # img[100, 100] = [255, 255, 255]
+    # print(">>>", img[100, 100])
     print(img.item(100, 100, 0))
     img.itemset((100, 100, 0), 100)
     print(img.item(100, 100, 0))
+
     print("(高度，宽度，通道数) = ", img.shape)
     print("像素数：", img.size, 768*1366*3)
     print("数据类型: ", img.dtype)
     log = img[50:140, 1120:1300]
-    # cv2.imshow('log', log)
+    cv2.imshow('log', log)
 
-    # img[300:390, 1120:1300] = log
-    # cv2.imshow('image', img)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
+    img[300:390, 1120:1300] = log
+    cv2.imshow('image', img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     # cv2.split()是一个比较耗时的操作，尽量不要用
     # b, g , r = cv2.split(img)
     b, g, r = img[:, :, 0], img[:, :, 1], img[:, :, 2]
-    # print(b, g, r)
+    print(b, g, r)
 
 
 def test_border():
@@ -310,9 +323,9 @@ def test_border():
 
 def test_cv_add():
     """openCvd的加法是一种饱和操作，Numpy的加法是一种模操作"""
-    # x = np.uint8([250])
-    # y = np.uint8([10])
-    # print("cv2.add(x, y) = {}, x + y = {}".format(cv2.add(x, y), x + y))
+    x = np.uint8([250])       # 250+10 = 260 => 255         [[255]]
+    y = np.uint8([10])        # 250+10 = 260 % 256 = 4      [4]
+    print("cv2.add(x, y) = {}, x + y = {}".format(cv2.add(x, y), x + y))
 
     img1 = cv2.imread('../test_open_cv_image/rose_1920_1080_1.jpg')
     img2 = cv2.imread('../test_open_cv_image/rose_1920_1080_2.jpg')
@@ -321,7 +334,7 @@ def test_cv_add():
     dst = cv2.addWeighted(img1, 0.7, img2, 0.3, 0)
     cv2.imshow('dst', dst)
     cv2.waitKey(0)
-    cv2.destroyAllWindow()
+    cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":

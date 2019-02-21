@@ -1,4 +1,8 @@
 venv
 .idea
-test_open_cv_image
 build
+src/Release/*
+src/*.mp4
+src/*.avi
+src/*.pyd
+src/__pycache__/
