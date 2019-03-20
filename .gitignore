@@ -6,3 +6,4 @@ src/*.mp4
 src/*.avi
 src/*.pyd
 src/__pycache__/
+*.html
