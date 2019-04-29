@@ -7,12 +7,12 @@ print("Collecting updates from weather server...")
 socket.connect("tcp://localhost:5556")
 
 zip_filter = sys.argv[1] if len(sys.argv) > 1 else "10001"
-print("zip_filter:",zip_filter)
+print("zip_filter:", zip_filter)
 
 if isinstance(zip_filter, bytes):
     zip_filter = zip_filter.decode('ascii')
 
-# socket.setsockopt_string(zmq.SUBSCRIBE, zip_filter)
+socket.setsockopt_string(zmq.SUBSCRIBE, zip_filter)
 total_temp = 0
 
 for update_nbr in range(5):
