@@ -8,3 +8,7 @@ ctypes
 CFFI
 
 opencv
+
+ZeroMQ
+
+Pyecharts
