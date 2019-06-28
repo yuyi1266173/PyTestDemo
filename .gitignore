@@ -8,3 +8,7 @@ src/*.pyd
 src/__pycache__/
 *.html
 src/VlcTest/__init__.py
+
+src/TestPyEcharts/*.png
+src/TestPyEcharts/*.exe
+src/TestPyEcharts/*.zip
