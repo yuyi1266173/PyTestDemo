@@ -1,6 +1,6 @@
 
 
-def test():
+def hello():
     while True:
         aaa = input("input:")
 
@@ -10,4 +10,4 @@ def test():
 
 
 if __name__ == "__main__":
-    test()
+    hello()
