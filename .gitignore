@@ -12,3 +12,6 @@ src/VlcTest/__init__.py
 src/TestPyEcharts/*.png
 src/TestPyEcharts/*.exe
 src/TestPyEcharts/*.zip
+
+src/docx_python/*.docx
+src/docx_python/*.png
