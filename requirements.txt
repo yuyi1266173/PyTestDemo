@@ -48,5 +48,5 @@ six==1.11.0
 snapshot-selenium==0.0.2
 tqdm==4.31.1
 traitlets==4.3.2
-urllib3==1.24.1
+urllib3==1.26.5
 websockets==7.0
