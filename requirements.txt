@@ -49,4 +49,4 @@ snapshot-selenium==0.0.2
 tqdm==4.31.1
 traitlets==4.3.2
 urllib3==1.24.1
-websockets==7.0
+websockets==9.1
