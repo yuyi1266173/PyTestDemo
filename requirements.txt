@@ -22,7 +22,7 @@ macropy3==1.1.0b2
 MarkupSafe==1.1.1
 matplotlib==2.2.3
 nbformat==4.4.0
-numpy==1.15.1
+numpy==1.22.0
 opencv-python==3.4.2.17
 Pillow==6.0.0
 plotly==3.7.1
