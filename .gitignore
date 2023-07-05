@@ -15,3 +15,8 @@ src/TestPyEcharts/*.zip
 
 src/docx_python/*.docx
 src/docx_python/*.png
+
+*.npy
+*.npz
+*.otf
+src/NumPyDemo/*.txt
