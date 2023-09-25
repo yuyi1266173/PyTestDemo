@@ -50,3 +50,4 @@ tqdm
 traitlets
 urllib3
 websockets
+scipy
